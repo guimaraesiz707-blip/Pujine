@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glow Beauty | Sua loja de beleza</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <h1>Glow Beauty ✨</h1>
+    <p>Sua beleza, seu brilho!</p>
+    <nav>
+        <a href="#inicio">Início</a>
+        <a href="#produtos">Produtos</a>
+        <a href="#carrinho">Carrinho 🛍️</a>
+    </nav>
+</header>
+
+<section class="banner" id="inicio">
+    <h2>Realce sua beleza!</h2>
+    <p>Descubra seus produtos favoritos.</p>
+    <a href="#produtos" class="botao">Comprar agora</a>
+</section>
+
+<main id="produtos">
+    <h2>Nossos produtos</h2>
+
+    <div class="produtos">
+        <div class="produto">
+            <div class="foto">💄</div>
+            <h3>Batom Matte</h3>
+            <p>R$ 29,90</p>
+            <button onclick="adicionar('Batom Matte', 29.90)">
+                Adicionar ao carrinho
+            </button>
+        </div>
+
+        <div class="produto">
+            <div class="foto">💗</div>
+            <h3>Blush Rosado</h3>
+            <p>R$ 35,90</p>
+            <button onclick="adicionar('Blush Rosado', 35.90)">
+                Adicionar ao carrinho
+            </button>
+        </div>
+
+        <div class="produto">
+            <div class="foto">✨</div>
+            <h3>Iluminador</h3>
+            <p>R$ 39,90</p>
+            <button onclick="adicionar('Iluminador', 39.90)">
+                Adicionar ao carrinho
+            </button>
+        </div>
+    </div>
+</main>
+
+<section id="carrinho">
+    <h2>Meu carrinho 🛍️</h2>
+    <ul id="lista"></ul>
+    <h3>Total: R$ <span id="total">0,00</span></h3>
+    <button onclick="limparCarrinho()">Limpar carrinho</button>
+</section>
+
+<footer>
+    <p>© 2026 Glow Beauty - Todos os direitos reservados.</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #fff8fa;
+    color: #573d48;
+}
+
+header {
+    background: #f5c6d6;
+    text-align: center;
+    padding: 25px;
+}
+
+header h1 {
+    color: #9c4265;
+    margin-bottom: 10px;
+}
+
+nav {
+    margin-top: 20px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #573d48;
+    margin: 10px;
+    font-weight: bold;
+}
+
+.banner {
+    text-align: center;
+    padding: 75px 20px;
+    background: #fce2eb;
+}
+
+.banner h2 {
+    font-size: 35px;
+    margin-bottom: 15px;
+}
+
+.botao {
+    display: inline-block;
+    background: #b9577b;
+    color: white;
+    padding: 12px 25px;
+    margin-top: 20px;
+    text-decoration: none;
+    border-radius: 20px;
+}
+
+main, #carrinho {
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.produtos {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 25px;
+    margin-top: 25px;
+}
+
+.produto {
+    background: white;
+    padding: 20px;
+    width: 230px;
+    border-radius: 15px;
+    box-shadow: 0 3px 10px #e8cbd5;
+}
+
+.foto {
+    background: #fce2eb;
+    padding: 30px;
+    font-size: 45px;
+    border-radius: 12px;
+    margin-bottom: 15px;
+}
+
+.produto p {
+    margin: 12px;
+    color: #b9577b;
+    font-weight: bold;
+}
+
+button {
+    background: #b9577b;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #923c60;
+}
+
+#carrinho ul {
+    list-style: none;
+    margin: 20px;
+}
+
+#carrinho li {
+    margin: 10px;
+}
+
+footer {
+    background: #f5c6d6;
+    text-align: center;
+    padding: 20px;
+}
+let total = 0;
+
+function adicionar(nome, preco) {
+    const lista = document.getElementById("lista");
+
+    const item = document.createElement("li");
+    item.textContent = nome + " - R$ " + preco.toFixed(2);
+
+    lista.appendChild(item);
+
+    total += preco;
+
+    document.getElementById("total").textContent =
+        total.toFixed(2).replace(".", ",");
+}
+
+function limparCarrinho() {
+    document.getElementById("lista").innerHTML = "";
+    total = 0;
+
+    document.getElementById("total").textContent = "0,00";
+}
